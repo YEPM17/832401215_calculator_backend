@@ -1,3 +1,9 @@
+databases:
+  - name: 832401215-calculator-db
+    plan: free
+    databaseName: calculator
+    user: calculator
+
 services:
   - type: web
     name: 832401215-calculator-backend
@@ -6,10 +12,8 @@ services:
     healthCheckPath: /health
     envVars:
       - key: DATABASE_URL
-        value: sqlite:////data/calculator.db
+        fromDatabase:
+          name: 832401215-calculator-db
+          property: connectionString
       - key: CORS_ORIGINS
         sync: false
-    disk:
-      name: calculator-data
-      mountPath: /data
-      sizeGB: 1

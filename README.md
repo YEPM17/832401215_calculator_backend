@@ -71,4 +71,6 @@ docker run --rm -p 8000:8000 -v calculator-data:/data calculator-backend
 
 ## 部署
 
-Render 可直接识别 `render.yaml`。部署后把服务公网地址填入前端 `js/config.js`，并把前端公网地址加入 `CORS_ORIGINS`。
+Render 可直接识别 `render.yaml`。该 Blueprint 会创建一个免费 Web Service 和一个免费 PostgreSQL 数据库，并通过 `DATABASE_URL` 自动连接，因此无需挂载付费持久磁盘。
+
+部署后把服务公网地址填入前端 `js/config.js`，并把前端公网地址加入 `CORS_ORIGINS`。免费 PostgreSQL 会在创建 30 天后过期，适合课程演示使用。
