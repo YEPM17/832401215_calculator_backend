@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: 832401215-calculator-backend
+    runtime: docker
+    plan: free
+    healthCheckPath: /health
+    envVars:
+      - key: DATABASE_URL
+        value: sqlite:////data/calculator.db
+      - key: CORS_ORIGINS
+        sync: false
+    disk:
+      name: calculator-data
+      mountPath: /data
+      sizeGB: 1
