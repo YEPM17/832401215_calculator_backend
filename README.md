@@ -1,13 +1,13 @@
 # 832401215 Calculator Backend
 
-FastAPI + SQLAlchemy + SQLite 后端，负责表达式解析、计算、历史持久化和删除。
+FastAPI + SQLAlchemy 后端，负责表达式解析、计算、历史持久化和删除。本地开发使用 SQLite，公网部署使用 PostgreSQL。
 
 ## 技术栈
 
 - Python 3.12+
 - FastAPI
 - SQLAlchemy 2
-- SQLite
+- SQLite / PostgreSQL
 - pytest
 
 ## 环境要求
@@ -71,6 +71,9 @@ docker run --rm -p 8000:8000 -v calculator-data:/data calculator-backend
 
 ## 部署
 
-Render 可直接识别 `render.yaml`。该 Blueprint 会创建一个免费 Web Service 和一个免费 PostgreSQL 数据库，并通过 `DATABASE_URL` 自动连接，因此无需挂载付费持久磁盘。
+当前公网部署使用 Railway：Docker Web Service 运行 FastAPI，Railway PostgreSQL 保存计算历史。部署后通过 `CORS_ORIGINS` 允许前端域名访问。
 
-部署后把服务公网地址填入前端 `js/config.js`，并把前端公网地址加入 `CORS_ORIGINS`。免费 PostgreSQL 会在创建 30 天后过期，适合课程演示使用。
+- 后端地址：https://832401215-calculator-backend-production.up.railway.app/
+- 健康检查：https://832401215-calculator-backend-production.up.railway.app/health
+
+仓库同时保留 `render.yaml` 作为 Render 平台的备选部署配置。
